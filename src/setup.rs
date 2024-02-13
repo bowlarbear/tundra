@@ -845,7 +845,7 @@ pub async fn make_backup(number: String) -> Result<String, String> {
 	Command::new("sleep").args(["6"]).output().unwrap();
 	//wipe the CD
 	Command::new("sudo").args(["umount", &path]).output().unwrap();
-	//we don't mind if this fails on blank CDs
+	we don't mind if this fails on blank CDs
 	let output = Command::new("sudo").args(["wodim", "-v", &("dev=".to_string()+&path), "blank=fast"]).output().unwrap();
 	if !output.status.success() {
 		//attempt alternative wipe method
