@@ -1,0 +1,6 @@
+[submodule "passport-vault-frontend"]
+	path = passport-vault-frontend
+	url = https://github.com/bowlarbear/passport-vault-frontend
+[submodule "tauri"]
+	path = tauri
+	url = https://github.com/bowlarbear/tauri.git

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Passport-vault
+Exec=/home/ubuntu/passport-vault
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=/home/ubuntu/passport-vault.jpeg
+StartupNotify=true
