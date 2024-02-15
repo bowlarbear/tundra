@@ -31,6 +31,8 @@ getrandom = { version = "0.2" }
 base64 = "0.13.0"
 regex = "1.5"
 thiserror = "1.0.51"
+bdk = "0.29.0"
+bc-ur = "0.2.4"
 
 
 
