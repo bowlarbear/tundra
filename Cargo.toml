@@ -1,11 +1,11 @@
 [package]
-name = "Passport-vault"
+name = "Tundra-vault"
 version = "0.1.0"
 description = "Free and Open Source Bitcoin Self Custody"
 authors = ["you"]
 license = ""
 repository = ""
-default-run = "Passport-vault"
+default-run = "Tundra-vault"
 edition = "2021"
 rust-version = "1.57"
 

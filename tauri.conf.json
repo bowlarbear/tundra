@@ -4,11 +4,11 @@
     "beforeBuildCommand": "",
     "beforeDevCommand": "",
     "devPath": "localhost:8080",
-    "distDir": "passport-vault-frontend/dist",
+    "distDir": "tundra-vault-frontend/dist",
     "withGlobalTauri": true
   },
   "package": {
-    "productName": "Passport-vault",
+    "productName": "Tundra-vault",
     "version": "0.1.0"
   },
   "tauri": {
@@ -59,7 +59,7 @@
         "fullscreen": false,
         "height": 600,
         "resizable": true,
-        "title": "Passport-vault",
+        "title": "Tundra-vault",
         "width": 800
       }
     ]

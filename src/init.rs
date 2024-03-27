@@ -24,24 +24,24 @@
 // 		return Err(format!("Error in Pre_install ping failed networking is not enabled"))
 // 	}
 //     //create destination directory
-//     let arc = std::path::Path::new(&(get_home().unwrap()+"/passport-vault-tmp")).exists();
+//     let arc = std::path::Path::new(&(get_home().unwrap()+"/tundra-vault-tmp")).exists();
 // 	if arc == false {
-// 		let output = Command::new("mkdir").arg(&(get_home().unwrap()+"/passport-vault-tmp")).output().unwrap();
+// 		let output = Command::new("mkdir").arg(&(get_home().unwrap()+"/tundra-vault-tmp")).output().unwrap();
 // 		if !output.status.success() {
-// 			return Err(format!("ERROR in pre_install with creating passport-vault-tmp directory = {}", std::str::from_utf8(&output.stderr).unwrap()));
+// 			return Err(format!("ERROR in pre_install with creating tundra-vault-tmp directory = {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 		}
 // 	}
 
 // 	//TODO fetch the iso from a remote server...right now it must be placed locally
 
 // 	//NOTE users may manually bypass the prebuilt ubuntu iso and build the iso themselves using our utility 
-// 	//https://github.com/bowlarbear/passport-vault-iso-builder 
-// 	//users should create the passport-vault-tmp directory in their home dir and move the passport-vault-ubuntu-22.04-amd64.iso created with the utility into it
+// 	//https://github.com/bowlarbear/tundra-vault-iso-builder 
+// 	//users should create the tundra-vault-tmp directory in their home dir and move the tundra-vault-ubuntu-22.04-amd64.iso created with the utility into it
 
 //     //check if ubuntu iso already exists, and if not, obtain
-// 	// let b = std::path::Path::new(&(get_home().unwrap()+"/passport-vault-tmp/passport-vault-ubuntu-22.04-amd64.iso")).exists();
+// 	// let b = std::path::Path::new(&(get_home().unwrap()+"/tundra-vault-tmp/tundra-vault-ubuntu-22.04-amd64.iso")).exists();
 //     // if b == false{
-//     // 	let output = Command::new("wget").args(["-O", "passport-vault-ubuntu-22.04-amd64.iso", "https://old-releases.ubuntu.com/releases/jammy/ubuntu-22.04-desktop-amd64.iso"]).output().unwrap();
+//     // 	let output = Command::new("wget").args(["-O", "tundra-vault-ubuntu-22.04-amd64.iso", "https://old-releases.ubuntu.com/releases/jammy/ubuntu-22.04-desktop-amd64.iso"]).output().unwrap();
 //     // 	if !output.status.success() {
 //     // 		return Err(format!("ERROR in pre-install with downloading ubuntu iso = {}", std::str::from_utf8(&output.stderr).unwrap()));
 //     // 	}
@@ -51,7 +51,7 @@
 // 	if root.len() > 0{
 // 		//DD target device by piping in the password
 // 		let mut sudo = Command::new("sudo")
-// 		.args(["dd", &("if=".to_string()+&get_home().unwrap()+"/passport-vault-tmp/passport-vault-ubuntu-22.04-amd64.iso"), &("of=".to_string()+&target), "bs=16M", "oflag=sync", "status=progress"])
+// 		.args(["dd", &("if=".to_string()+&get_home().unwrap()+"/tundra-vault-tmp/tundra-vault-ubuntu-22.04-amd64.iso"), &("of=".to_string()+&target), "bs=16M", "oflag=sync", "status=progress"])
 // 		.stdin(Stdio::piped()) //pipe password
 // 		.stdout(Stdio::piped()) //capture stdout
 // 		.spawn()
@@ -68,21 +68,21 @@
 // 	//flash pre-install with no dd, no root pass, TODO not yet tested
 // 	else{
 // 		let output = Command::new("sudo")
-//         .args(["dd", &("if=".to_string()+&get_home().unwrap()+"/passport-vault-tmp/passport-vault-ubuntu-22.04-amd64.iso"), &("of=".to_string()+&target), "bs=16M", "oflag=sync", "status=progress"])
+//         .args(["dd", &("if=".to_string()+&get_home().unwrap()+"/tundra-vault-tmp/tundra-vault-ubuntu-22.04-amd64.iso"), &("of=".to_string()+&target), "bs=16M", "oflag=sync", "status=progress"])
 //         .output()
 //         .unwrap();
 // 		if !output.status.success() {
 // 			return Err(format!("ERROR in pre_install with Burning ISO with DD & blank sysPass = {}", std::str::from_utf8(&output.stderr).unwrap()));
 //     	}
 // 	}
-// 	//TODO remove the passport-vault temp dir. keep it for now until bulk of dev work and testing is finished
+// 	//TODO remove the tundra-vault temp dir. keep it for now until bulk of dev work and testing is finished
 // 	//Flush the Filesystem Buffers
 // 	Command::new("sync").output().unwrap();
 //     Ok(format!("pre-install complete!"))
 // }
 
 
-// //build the passport-vault iso for initial flash
+// //build the tundra-vault iso for initial flash
 // #[tauri::command]
 // pub async fn init_iso() -> Result<String, String> {
 // 	//install updates
@@ -98,11 +98,11 @@
 // 	//convert cwd to string
 // 	let initial_cwd = initial_cwd_buf.to_str();
 // 	//create the application directory
-// 	let arc = std::path::Path::new(&(get_home().unwrap()+"/passport-vault")).exists();
+// 	let arc = std::path::Path::new(&(get_home().unwrap()+"/tundra-vault")).exists();
 // 	if arc == false {
-// 		let output = Command::new("mkdir").arg(&(get_home().unwrap()+"/passport-vault")).output().unwrap();
+// 		let output = Command::new("mkdir").arg(&(get_home().unwrap()+"/tundra-vault")).output().unwrap();
 // 		if !output.status.success() {
-// 			return Err(format!("ERROR in init iso with creating passport-vault directory = {}", std::str::from_utf8(&output.stderr).unwrap()));
+// 			return Err(format!("ERROR in init iso with creating tundra-vault directory = {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 		}
 // 	}
 // 	//remove stale iso mount if exist from a previous session
@@ -114,12 +114,12 @@
 // 		}
 // 	}
 // 	//set the current working directory to the application directory
-// 	env::set_current_dir(&(get_home().unwrap()+"/passport-vault"));
+// 	env::set_current_dir(&(get_home().unwrap()+"/tundra-vault"));
 //     //download system level dependencies required for Hardware Wallets
 // 	Command::new("sudo").args(["apt", "download", "wodim", "genisoimage", "ssss", "qrencode", "libqrencode4", "xclip", "tor", "zbar-tools", "libzbar0", "libmagickwand-6.q16-6", "imagemagick-6-common", "libmagickcore-6.q16-6", "libheif1", "liblqr-1-0", "libaom3", "libdav1d5", "libde265-0", "libx265-199"]).output().unwrap();
 // 	//check if ubuntu iso & bitcoin core already exists, and if no, obtain
-// 	let b = std::path::Path::new(&(get_home().unwrap()+"/passport-vault/ubuntu-22.04.3-desktop-amd64.iso")).exists();
-// 	let c = std::path::Path::new(&(get_home().unwrap()+"/passport-vault/bitcoin-25.0-x86_64-linux-gnu.tar.gz")).exists();
+// 	let b = std::path::Path::new(&(get_home().unwrap()+"/tundra-vault/ubuntu-22.04.3-desktop-amd64.iso")).exists();
+// 	let c = std::path::Path::new(&(get_home().unwrap()+"/tundra-vault/bitcoin-25.0-x86_64-linux-gnu.tar.gz")).exists();
 // 	if b == false{
 // 		let output = Command::new("curl").args(["-o", "ubuntu-22.04.3-desktop-amd64.iso", "https://releases.ubuntu.com/jammy/ubuntu-22.04.3-desktop-amd64.iso"]).output().unwrap();
 // 		if !output.status.success() {
@@ -136,44 +136,44 @@
 // 	Command::new("sudo").args(["rm", "persistent-ubuntu.iso"]).output().unwrap();
 // 	Command::new("sudo").args(["rm", "persistent-ubuntu1.iso"]).output().unwrap();
 // 	//make the scripts dir if it doesn't exist
-// 	let d = std::path::Path::new(&(get_home().unwrap()+"/passport-vault/scripts")).exists();
+// 	let d = std::path::Path::new(&(get_home().unwrap()+"/tundra-vault/scripts")).exists();
 // 	if d == false {
-// 		let output = Command::new("mkdir").arg(&(get_home().unwrap()+"/passport-vault/scripts")).output().unwrap();
+// 		let output = Command::new("mkdir").arg(&(get_home().unwrap()+"/tundra-vault/scripts")).output().unwrap();
 // 		if !output.status.success() {
 // 			return Err(format!("ERROR in creating the scripts directory {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 		} 
 // 	}
 // 	//create sed1 script
-// 	let file = File::create(&(get_home().unwrap()+"/passport-vault/scripts/sed1.sh")).unwrap();
+// 	let file = File::create(&(get_home().unwrap()+"/tundra-vault/scripts/sed1.sh")).unwrap();
 // 	//populate sed1.sh with bash
 // 	let output = Command::new("echo").args(["-e", "< ubuntu-22.04.3-desktop-amd64.iso sed 's/maybe-ubiquity/  persistent  /' > persistent-ubuntu1.iso"]).stdout(file).output().unwrap();
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR with creating sed1.sh: {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	}
 // 	//create sed2 script
-// 	let file = File::create(&(get_home().unwrap()+"/passport-vault/scripts/sed2.sh")).unwrap();
+// 	let file = File::create(&(get_home().unwrap()+"/tundra-vault/scripts/sed2.sh")).unwrap();
 // 	//populate sed2.sh with bash
 // 	let output = Command::new("echo").args(["-e", "< persistent-ubuntu1.iso sed 's/set timeout=30/set timeout=1 /' > persistent-ubuntu.iso"]).stdout(file).output().unwrap();
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR with creating sed2.sh: {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	}
 // 	//execute sed1.sh which modifies the ubuntu iso to have persistence
-// 	let output = Command::new("bash").args([&(get_home().unwrap()+"/passport-vault/scripts/sed1.sh")]).output().unwrap();
+// 	let output = Command::new("bash").args([&(get_home().unwrap()+"/tundra-vault/scripts/sed1.sh")]).output().unwrap();
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR in running sed1 {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	} 
 // 	//verify that the iso has been modified
-// 	let exists = Path::new(&(get_home().unwrap()+"/passport-vault/persistent-ubuntu1.iso")).exists();
+// 	let exists = Path::new(&(get_home().unwrap()+"/tundra-vault/persistent-ubuntu1.iso")).exists();
 // 	if !exists {
 // 		return Err(format!("ERROR in running sed1, script completed but did not create iso"));
 // 	}
 // 	//execute sed2.sh which modifies ubuntu iso to have a shorter timeout at boot screen
-// 	let output = Command::new("bash").args([&(get_home().unwrap()+"/passport-vault/scripts/sed2.sh")]).output().unwrap();
+// 	let output = Command::new("bash").args([&(get_home().unwrap()+"/tundra-vault/scripts/sed2.sh")]).output().unwrap();
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR in running sed2 {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	} 
 // 	//verify that the iso has been modified
-// 	let exists = Path::new(&(get_home().unwrap()+"/passport-vault/persistent-ubuntu.iso")).exists();
+// 	let exists = Path::new(&(get_home().unwrap()+"/tundra-vault/persistent-ubuntu.iso")).exists();
 // 	if !exists {
 // 		return Err(format!("ERROR in running sed2, script completed but did not create iso"));
 // 	}
@@ -187,7 +187,7 @@
 // //used to create a bootable hardware wallet
 // #[tauri::command]
 // pub async fn create_bootable_usb(number: String, setup: String, awake: bool, baseline: String) -> Result<String, String> {
-// 	//TODO check for existing passport-vault installation and return error if found
+// 	//TODO check for existing tundra-vault installation and return error if found
 // 	//OR should we let the software overwrite an existing installation in case a user wants to retry after a failed attempt with the same stick?
 	
 // 	//obtain application's current working directory
@@ -213,7 +213,7 @@
 // 	};
 // 	//burn iso with dd
 // 	let output = Command::new("sudo")
-//         .args(["dd", &("if=".to_string()+&get_home().unwrap()+"/passport-vault/persistent-ubuntu.iso"), &("of=".to_string()+&target), "bs=4M", "oflag=sync", "status=progress"])
+//         .args(["dd", &("if=".to_string()+&get_home().unwrap()+"/tundra-vault/persistent-ubuntu.iso"), &("of=".to_string()+&target), "bs=4M", "oflag=sync", "status=progress"])
 //         .output()
 //         .unwrap();
 // 		if !output.status.success() {
@@ -230,33 +230,33 @@
 // 		return Err(e.to_string())
 // 	};
 // 	//create the persistent partition table
-// 	let script = std::path::Path::new(&(get_home().unwrap()+"/passport-vault/scripts/create_partition.sh")).exists();
+// 	let script = std::path::Path::new(&(get_home().unwrap()+"/tundra-vault/scripts/create_partition.sh")).exists();
 // 	if script == true{
 // 		//remove stale create_partition.sh script
-// 		let output = Command::new("sudo").args(["rm", &(get_home().unwrap()+"/passport-vault/scripts/create_partition.sh")]).output().unwrap();
+// 		let output = Command::new("sudo").args(["rm", &(get_home().unwrap()+"/tundra-vault/scripts/create_partition.sh")]).output().unwrap();
 // 		if !output.status.success() {
 // 			return Err(format!("ERROR in create_bootable with removing stale create_partition.sh script: {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 		}
 // 	}
 // 	//create persistent partition shell script
-// 	let file = File::create(&(get_home().unwrap()+"/passport-vault/scripts/create_partition.sh")).unwrap();
+// 	let file = File::create(&(get_home().unwrap()+"/tundra-vault/scripts/create_partition.sh")).unwrap();
 // 	//populate script with bash
 // 	let output = Command::new("echo").args(["-e", &("(\necho n\necho 4\necho \necho \necho w\n) | sudo fdisk --wipe=always ".to_string()+&target)]).stdout(file).output().unwrap();
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR in create_bootable with creating create_partition.sh: {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	}
 // 	//make create_partition.sh executable
-// 	let output = Command::new("sudo").args(["chmod", "+x", &(get_home().unwrap()+"/passport-vault/scripts/create_partition.sh")]).output().unwrap();
+// 	let output = Command::new("sudo").args(["chmod", "+x", &(get_home().unwrap()+"/tundra-vault/scripts/create_partition.sh")]).output().unwrap();
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR in create_bootable with making create_partition.sh executable: {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	}
 // 	//execute persistent partition shell script
-// 	Command::new("bash").arg(&(get_home().unwrap()+"/passport-vault/scripts/create_partition.sh")).output().unwrap();
+// 	Command::new("bash").arg(&(get_home().unwrap()+"/tundra-vault/scripts/create_partition.sh")).output().unwrap();
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR in create_bootable with executing create_partition.sh: {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	}
 // 	//remove persistent partition shell script
-// 	let output = Command::new("rm").arg(&(get_home().unwrap()+"/passport-vault/scripts/create_partition.sh")).output().unwrap();
+// 	let output = Command::new("rm").arg(&(get_home().unwrap()+"/tundra-vault/scripts/create_partition.sh")).output().unwrap();
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR in create_bootable with removing create_partition.sh: {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	}
@@ -311,110 +311,110 @@
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR in create_bootable with opening file permissions of persistent dir = {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	}
-// 	//make the user directory and passport-vault directory
-// 	let output = Command::new("mkdir").args(["-p", &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/passport-vault")]).output().unwrap();
+// 	//make the user directory and tundra-vault directory
+// 	let output = Command::new("mkdir").args(["-p", &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/tundra-vault")]).output().unwrap();
 // 		if !output.status.success() {
 // 			return Err(format!("ERROR in icreate_bootable with creating writable/upper/home/user directory = {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 		}
 // 	//make dependencies directory
 // 	Command::new("mkdir").args([&("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
 // 	//copying dependencies genisoimage
-// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/passport-vault/genisoimage_9%3a1.1.11-3.2ubuntu1_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
+// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/tundra-vault/genisoimage_9%3a1.1.11-3.2ubuntu1_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR in create_bootable with copying genisoimage = {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	}
 // 	//copying dependencies ssss
-// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/passport-vault/ssss_0.5-5_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
+// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/tundra-vault/ssss_0.5-5_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR in create_bootable with copying ssss = {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	}
 // 	//copying dependencies wodim
-// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/passport-vault/wodim_9%3a1.1.11-3.2ubuntu1_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
+// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/tundra-vault/wodim_9%3a1.1.11-3.2ubuntu1_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR in create_bootable with copying wodim = {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	}
 // 	//copying dependencies libqrencode4 library
-// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/passport-vault/libqrencode4_4.1.1-1_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
+// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/tundra-vault/libqrencode4_4.1.1-1_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR in create_bootable with copying qrencode = {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	}
 // 	//copying dependencies qrencode
-// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/passport-vault/qrencode_4.1.1-1_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
+// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/tundra-vault/qrencode_4.1.1-1_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR in create_bootable with copying qrencode = {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	}
 // 	//copying dependencies xclip
-// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/passport-vault/xclip_0.13-2_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
+// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/tundra-vault/xclip_0.13-2_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR in create_bootable with copying X clip = {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	}
 // 	//copying dependencies tor
-// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/passport-vault/tor_0.4.6.10-1_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
+// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/tundra-vault/tor_0.4.6.10-1_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR in create_bootable with copying tor = {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	}
 // 	//copying dependencies libzbar0
-// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/passport-vault/libzbar0_0.23.92-4build2_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
+// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/tundra-vault/libzbar0_0.23.92-4build2_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR in create_bootable with copying libzbar0 = {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	}
 // 	//copying dependencies imagemagick
-// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/passport-vault/imagemagick-6-common_8%3a6.9.11.60+dfsg-1.3ubuntu0.22.04.3_all.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
+// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/tundra-vault/imagemagick-6-common_8%3a6.9.11.60+dfsg-1.3ubuntu0.22.04.3_all.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR in create_bootable with copying image magick = {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	}
 // 	//copying dependencies libaom3
-// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/passport-vault/libaom3_3.3.0-1_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
+// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/tundra-vault/libaom3_3.3.0-1_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR in create_bootable with copying libaom3 = {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	}	
 // 	//copying dependencies libdav1d5
-// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/passport-vault/libdav1d5_0.9.2-1_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
+// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/tundra-vault/libdav1d5_0.9.2-1_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR in create_bootable with copying libdav1d5 = {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	}	
 // 	//copying dependencies libde265-0
-// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/passport-vault/libde265-0_1.0.8-1_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
+// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/tundra-vault/libde265-0_1.0.8-1_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR in create_bootable with copying libde265-0 = {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	}	
 // 	//copying dependencies libx265-199
-// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/passport-vault/libx265-199_3.5-2_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
+// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/tundra-vault/libx265-199_3.5-2_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR in create_bootable with copying libx265-199 = {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	}
 // 	//copying dependencies libheif1
-// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/passport-vault/libheif1_1.12.0-2build1_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
+// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/tundra-vault/libheif1_1.12.0-2build1_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR in create_bootable with copying libheif1 = {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	}
 // 	//copying dependencies liblqr-1-0
-// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/passport-vault/liblqr-1-0_0.4.2-2.1_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
+// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/tundra-vault/liblqr-1-0_0.4.2-2.1_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR in create_bootable with copying liblqr = {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	}
 // 	//copying dependencies libmagickcore
-// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/passport-vault/libmagickcore-6.q16-6_8%3a6.9.11.60+dfsg-1.3ubuntu0.22.04.3_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
+// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/tundra-vault/libmagickcore-6.q16-6_8%3a6.9.11.60+dfsg-1.3ubuntu0.22.04.3_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR in create_bootable with copying libmagickcore = {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	}
 // 	//copying dependencies libmagickwand-6.q16-6
-// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/passport-vault/libmagickwand-6.q16-6_8%3a6.9.11.60+dfsg-1.3ubuntu0.22.04.3_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
+// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/tundra-vault/libmagickwand-6.q16-6_8%3a6.9.11.60+dfsg-1.3ubuntu0.22.04.3_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR in create_bootable with copying libmagickwand = {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	}
 // 	//copying dependencies zbar-tools
-// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/passport-vault/zbar-tools_0.23.92-4build2_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
+// 	let output = Command::new("cp").args([&(get_home().unwrap()+"/tundra-vault/zbar-tools_0.23.92-4build2_amd64.deb"), &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu/dependencies")]).output().unwrap();
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR in create_bootable with copying zbar-tools = {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	}
-// 	//copy over passport-vault binary
-// 	let output = Command::new("cp").args([format!("{}/Passport-vault", initial_cwd.unwrap()), format!("/media/{}/writable/upper/home/ubuntu", get_user().unwrap())]).output().unwrap();
+// 	//copy over tundra-vault binary
+// 	let output = Command::new("cp").args([format!("{}/Tundra-vault", initial_cwd.unwrap()), format!("/media/{}/writable/upper/home/ubuntu", get_user().unwrap())]).output().unwrap();
 // 	if !output.status.success() {
-// 		return Err(format!("ERROR in create_bootable with copying passport-vault binary = {}", std::str::from_utf8(&output.stderr).unwrap()));
+// 		return Err(format!("ERROR in create_bootable with copying tundra-vault binary = {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	}
 // 	//extract bitcoin core
-// 	let output = Command::new("tar").args(["-xzf", &(get_home().unwrap()+"/passport-vault/bitcoin-25.0-x86_64-linux-gnu.tar.gz"), "-C", &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu")]).output().unwrap();
+// 	let output = Command::new("tar").args(["-xzf", &(get_home().unwrap()+"/tundra-vault/bitcoin-25.0-x86_64-linux-gnu.tar.gz"), "-C", &("/media/".to_string()+&get_user().unwrap()+"/writable/upper/home/ubuntu")]).output().unwrap();
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR in create_bootable with extracting bitcoin core = {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	}

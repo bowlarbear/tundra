@@ -282,7 +282,7 @@ fn test_function() -> Result<String, Error> {
 // //create and mount the ramdisk path for senstive data at /mnt/ramdisk
 // #[tauri::command]
 // async fn create_ramdisk() -> Result<String, String> {
-// 	//check if the ramdisk already exists and has been used by Passport-vault this session
+// 	//check if the ramdisk already exists and has been used by Tundra-vault this session
 // 	let a = std::path::Path::new("/mnt/ramdisk/sensitive").exists();
 // 	let b = std::path::Path::new("/mnt/ramdisk/CDROM").exists();
 //     if a  || b {
@@ -294,10 +294,10 @@ fn test_function() -> Result<String, Error> {
 // 		if !output.status.success() {
 // 			return Err(format!("ERROR in disabling swapiness {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 			}
-// 		//open passport-vault directory permissions (putting this here because this script always runs at startup)
-// 		let output = Command::new("sudo").args(["chmod", "777", &(get_home().unwrap()+"/passport-vault")]).output().unwrap();
+// 		//open tundra-vault directory permissions (putting this here because this script always runs at startup)
+// 		let output = Command::new("sudo").args(["chmod", "777", &(get_home().unwrap()+"/tundra-vault")]).output().unwrap();
 // 		if !output.status.success() {
-// 			return Err(format!("ERROR in opening file permissions of $HOME/passport-vault = {}", std::str::from_utf8(&output.stderr).unwrap()));
+// 			return Err(format!("ERROR in opening file permissions of $HOME/tundra-vault = {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 		}
 // 		//check if ramdisk exists
 // 		let c = std::path::Path::new("/mnt/ramdisk").exists();
@@ -472,9 +472,9 @@ fn test_function() -> Result<String, Error> {
 // 		}
 // 	}
 // 	//check for stale combine-shards.sh script
-// 	let combine_script = std::path::Path::new(&(get_home().unwrap()+"/passport-vault/combine-shards.sh")).exists();
+// 	let combine_script = std::path::Path::new(&(get_home().unwrap()+"/tundra-vault/combine-shards.sh")).exists();
 // 	if combine_script == true{
-// 		let output = Command::new("sudo").args(["rm", &(get_home().unwrap()+"/passport-vault/combine-shards.sh")]).output().unwrap();
+// 		let output = Command::new("sudo").args(["rm", &(get_home().unwrap()+"/tundra-vault/combine-shards.sh")]).output().unwrap();
 // 		if !output.status.success() {
 // 			return Err(format!("ERROR in combine_shards, with removing combine-shards script = {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 		}
@@ -521,7 +521,7 @@ fn test_function() -> Result<String, Error> {
 // 		}
 // 	}
 // 	//create combine-shards.sh script
-// 	let file = File::create(&(get_home().unwrap()+"/passport-vault/combine-shards.sh")).unwrap();
+// 	let file = File::create(&(get_home().unwrap()+"/tundra-vault/combine-shards.sh")).unwrap();
 // 	//populate combine-shards.sh with bash
 // 	let output = Command::new("echo").args(["-e", 
 // 	"#combine 5 key shards inside of shards.txt to reconstitute masterkey\n
@@ -532,7 +532,7 @@ fn test_function() -> Result<String, Error> {
 // 	}
 // 	//execute the combine-shards bash script
 // 	let output = Command::new("bash")
-// 		.args([get_home().unwrap()+"/passport-vault/combine-shards.sh"])
+// 		.args([get_home().unwrap()+"/tundra-vault/combine-shards.sh"])
 // 		.output()
 // 		.expect("failed to execute process");
 // 	let content = match fs::read_to_string("/mnt/ramdisk/masterkey_untrimmed.txt"){
@@ -720,10 +720,10 @@ fn test_function() -> Result<String, Error> {
 // //enable webcam with zbarcam and force stop zbarcam after it receives a valid string
 // #[tauri::command]
 // async fn enable_webcam_qr_scan() -> Result<String, String> {
-// 	let script = std::path::Path::new(&(get_home().unwrap()+"/passport-vault/enable-webcam-scan.sh")).exists();
+// 	let script = std::path::Path::new(&(get_home().unwrap()+"/tundra-vault/enable-webcam-scan.sh")).exists();
 // 	if script == false{
 // 		//create enable-webcam-scan.sh script
-// 		let file = File::create(&(get_home().unwrap()+"/passport-vault/enable-webcam-scan.sh")).unwrap();
+// 		let file = File::create(&(get_home().unwrap()+"/tundra-vault/enable-webcam-scan.sh")).unwrap();
 // 		//populate enable-webcam-scan.sh with bash
 // 		let output = Command::new("echo").args(["-e", "zbarcam | head -n 1"]).stdout(file).output().unwrap();
 // 		if !output.status.success() {
@@ -731,7 +731,7 @@ fn test_function() -> Result<String, Error> {
 // 		}
 // 	}
 // 	//run enable webcam scan bash script, pipes zbarcam output to head
-// 	let output = Command::new("bash").args([&(get_home().unwrap()+"/passport-vault/enable-webcam-scan.sh")]).output().unwrap();
+// 	let output = Command::new("bash").args([&(get_home().unwrap()+"/tundra-vault/enable-webcam-scan.sh")]).output().unwrap();
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR in running enable-webcam-scan.sh {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	} 

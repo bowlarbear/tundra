@@ -3,7 +3,7 @@
 version = 3
 
 [[package]]
-name = "Passport-vault"
+name = "Tundra-vault"
 version = "0.1.0"
 dependencies = [
  "base64 0.13.0",
