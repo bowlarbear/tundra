@@ -1,9 +1,9 @@
 [Desktop Entry]
 Version=1.0
-Name=Tundra-vault
-Exec=/home/ubuntu/tundra-vault
+Name=Tundra
+Exec=/home/ubuntu/tundra
 Terminal=false
 X-MultipleArgs=false
 Type=Application
-Icon=/home/ubuntu/tundra-vault.jpeg
+Icon=/home/ubuntu/tundra.jpeg
 StartupNotify=true

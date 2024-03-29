@@ -154,7 +154,7 @@
 // 	Ok(format!("SUCCESS generated and stored Private and Public Time Machine Key Pair"))
 // }
 
-// //create tundra-vault descriptors
+// //create tundra descriptors
 // //High Descriptor is the time locked 5 of 11 with decay (the 4 keys in the 2 of 4 timelock will be held by BPS)
 // //Medium Descriptor is the 2 of 7 with decay
 // //Low Descriptor is the 1 of 7 and may be removed
@@ -407,7 +407,7 @@
 // 	let file = File::create("/mnt/ramdisk/CDROM/config.txt").unwrap();
 // 	Command::new("echo").args(["type=setupcd" ]).stdout(file).output().unwrap();
 // 	//create create-setup-cd.sh script
-// 	let file = File::create(&(get_home().unwrap()+"/tundra-vault/create-setup-cd.sh")).unwrap();
+// 	let file = File::create(&(get_home().unwrap()+"/tundra/create-setup-cd.sh")).unwrap();
 // 	//populate create-setup-cd.sh with bash
 // 	let output = Command::new("echo").args(["-e", 
 //     "#generate masterkey for encrypting persistent directories\n
@@ -431,7 +431,7 @@
 // 		return Err(format!("ERROR with creating create-setup-cd.sh: {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	}
 // 	//create masterkey and derive shards
-// 	let output = Command::new("bash").args([&(get_home().unwrap()+"/tundra-vault/create-setup-cd.sh")]).output().unwrap();
+// 	let output = Command::new("bash").args([&(get_home().unwrap()+"/tundra/create-setup-cd.sh")]).output().unwrap();
 // 	if !output.status.success() {
 // 		return Err(format!("ERROR in running create-setup-cd.sh {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 	} 

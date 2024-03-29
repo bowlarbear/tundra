@@ -4,11 +4,11 @@
     "beforeBuildCommand": "",
     "beforeDevCommand": "",
     "devPath": "localhost:8080",
-    "distDir": "tundra-vault-frontend/dist",
+    "distDir": "tundra-frontend/dist",
     "withGlobalTauri": true
   },
   "package": {
-    "productName": "Tundra-vault",
+    "productName": "Tundra",
     "version": "0.1.0"
   },
   "tauri": {
@@ -59,7 +59,7 @@
         "fullscreen": false,
         "height": 600,
         "resizable": true,
-        "title": "Tundra-vault",
+        "title": "Tundra",
         "width": 800
       }
     ]

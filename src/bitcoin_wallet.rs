@@ -619,9 +619,9 @@
 // #[tauri::command]
 // pub async fn init_bitcoind() ->Result<String, String> {
 // 	//Download core if needed
-// 	let bitcoin_tar = std::path::Path::new(&(get_home().unwrap()+"/tundra-vault/bitcoin-25.0-x86_64-linux-gnu.tar.gz")).exists();
+// 	let bitcoin_tar = std::path::Path::new(&(get_home().unwrap()+"/tundra/bitcoin-25.0-x86_64-linux-gnu.tar.gz")).exists();
 // 	if bitcoin_tar == false{
-// 		let output = Command::new("wget").args(["-O", &(get_home().unwrap()+"/tundra-vault/bitcoin-25.0-x86_64-linux-gnu.tar.gz"),"https://bitcoincore.org/bin/bitcoin-core-25.0/bitcoin-25.0-x86_64-linux-gnu.tar.gz"]).output().unwrap();
+// 		let output = Command::new("wget").args(["-O", &(get_home().unwrap()+"/tundra/bitcoin-25.0-x86_64-linux-gnu.tar.gz"),"https://bitcoincore.org/bin/bitcoin-core-25.0/bitcoin-25.0-x86_64-linux-gnu.tar.gz"]).output().unwrap();
 // 		if !output.status.success() {
 // 			return Err(format!("ERROR in init_bitcoind with downloading bitcoin core = {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 		}
@@ -629,7 +629,7 @@
 // 	//extract bitcoin core
 // 	let bitcoin = std::path::Path::new(&(get_home().unwrap()+"/bitcoin-25.0")).exists();
 // 	if bitcoin == false{
-// 		let output = Command::new("tar").args(["-xzf", &(get_home().unwrap()+"/tundra-vault/bitcoin-25.0-x86_64-linux-gnu.tar.gz"), "-C", &get_home().unwrap()]).output().unwrap();
+// 		let output = Command::new("tar").args(["-xzf", &(get_home().unwrap()+"/tundra/bitcoin-25.0-x86_64-linux-gnu.tar.gz"), "-C", &get_home().unwrap()]).output().unwrap();
 // 		if !output.status.success() {
 // 			return Err(format!("ERROR in init_bitcoind with extracting bitcoin core = {}", std::str::from_utf8(&output.stderr).unwrap()));
 // 		}

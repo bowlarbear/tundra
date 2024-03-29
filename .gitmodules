@@ -1,6 +1,6 @@
-[submodule "tundra-vault-frontend"]
-	path = tundra-vault-frontend
-	url = https://github.com/bowlarbear/tundra-vault-frontend
+[submodule "tundra-frontend"]
+	path = tundra-frontend
+	url = https://github.com/bowlarbear/tundra-frontend
 [submodule "tauri"]
 	path = tauri
 	url = https://github.com/bowlarbear/tauri.git

@@ -1,11 +1,11 @@
 [package]
-name = "Tundra-vault"
+name = "Tundra"
 version = "0.1.0"
 description = "Free and Open Source Bitcoin Self Custody"
 authors = ["you"]
 license = ""
 repository = ""
-default-run = "Tundra-vault"
+default-run = "Tundra"
 edition = "2021"
 rust-version = "1.57"
 

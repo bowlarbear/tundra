@@ -1,4 +1,4 @@
-name: Compile Tundra-vault CI
+name: Compile Tundra CI
 
 on:
   push:
@@ -12,7 +12,7 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build-tundra-vault:
+  build-tundra:
     runs-on: ubuntu-latest
 
     strategy:
@@ -32,7 +32,7 @@ jobs:
 
       - name: Compile the frontend submodule
         run: |
-          cd tundra-vault-frontend/
+          cd tundra-frontend/
           npm ci
           npm run build --verbose --if-present
           cd ../
